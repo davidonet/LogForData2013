@@ -1,4 +1,4 @@
-define(['swfobject','decoder'], function() {
+define(['swfobject', 'decoder'], function() {
 	var data = "";
 	var txt = $("#txt");
 	var ui = $("#ui");
@@ -32,7 +32,16 @@ define(['swfobject','decoder'], function() {
 		};
 		d.onData = function(s) {
 			data += s;
-			txt.text(data);
+			var sp = data.indexOf(".");
+			if (0 < sp) {
+				var txt = data.slice(0, sp + 1);
+				data = data.slice(sp+1);
+				$('#render').trigger('receive', txt);
+				while (data[0] == ".") {
+					data = data.slice(1);
+				}
+			}
+			$('#txt').text(data);
 		};
 	});
-}); 
+});

@@ -32,7 +32,7 @@ define([], function() {
 			log("Updating Tag");
 
 			if ($('.city').exists()) {
-				map_show();
+				//map_show();
 				$('.city').text(geoplugin_city());
 				log("Looking for " + geoplugin_city());
 			}
