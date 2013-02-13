@@ -32,14 +32,14 @@ define(['swfobject', 'decoder'], function() {
 		};
 		d.onData = function(s) {
 			data += s;
+			while (data[0] == ".") {
+				data = data.slice(1);
+			}
 			var sp = data.indexOf(".");
 			if (0 < sp) {
 				var txt = data.slice(0, sp + 1);
-				data = data.slice(sp+1);
+				data = data.slice(sp + 1);
 				$('#render').trigger('receive', txt);
-				while (data[0] == ".") {
-					data = data.slice(2);
-				}
 			}
 			$('#txt').text(data);
 		};
