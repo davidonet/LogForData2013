@@ -32,7 +32,7 @@ define(['swfobject','decoder'], function() {
 		};
 		d.onData = function(s) {
 			data += s;
-			txt.html(data);
+			txt.text(data);
 		};
 	});
 }); 

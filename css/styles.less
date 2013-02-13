@@ -1,4 +1,33 @@
-@import "http://twitter.github.com/bootstrap/assets/css/bootstrap.css";
+//@import "http://twitter.github.com/bootstrap/assets/css/bootstrap.css";
+@font-face {
+  font-family: 'Lucida Sans Typewriter';
+  src: url('LucidaTypewriterRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  background: black;
+  color: white;
+  font-family: "Lucida Sans Typewriter", "Lucida Sans", sans-serif;
+  font-size: 10pt;
+  width: 92%;
+  margin-left: 4%;
+  margin-right: 4%;
+  width: 75%;
+}
+
+span{
+  background: white;
+  color: black;
+  padding-left:8px;
+  padding-right:8px
+}
+
+span.btn{
+  border:solid 1px #aaa;
+  margin:8px 8px 8px 8px;
+  padding:8px 8px 8px 8px; 
+}
 
 .app {
     width: 100%;
@@ -12,6 +41,8 @@
 #txt {
     height: 329px;
     overflow-y: scroll;
+     margin:8px 8px 8px 8px;
+     border:solid 1px #aaa;
 }
 
 #ui {
@@ -19,9 +50,112 @@
     overflow-y: scroll;
 }
 #render {
+    padding-top:16px;
     height: 480px;
+     margin:8px 8px 8px 8px;
 }
 #log {
     height: 480px;
+     margin:8px 8px 8px 8px;
+     border:solid 1px #111;
 }
 
+b {
+  font-size: 200%;
+  text-align: center;
+}
+
+.c {
+  color: white;
+  background-color: black;
+  text-align: justify;
+}
+.c0 {
+  color: #222;
+  background-color: black;
+  border-color: #4169E1;
+}
+.c1 {
+  color: #FF0000;
+  background-color: black;
+}
+.c2 {
+  color: #FFFF00;
+  border-color: #00FFFF;
+}
+.c3 {
+  color: #FFFFFF;
+  background-color: black;
+  border-color: #00FF00;
+  border-right: solid 2px white;
+  padding-right: 20px;
+  margin-right: 360px;
+  text-align: right;
+}
+.c4 {
+  color: #4169E1;
+  background-color: black;
+  border-left: solid 2px white;
+  padding-left: 20px;
+  margin-left: 360px;
+  text-align: left;
+}
+.c4 {
+  color: #0000FF;
+  background-color: black;
+}
+.c5 {
+  color: #7CFC00;
+  background-color: black;
+}
+div.c5 {
+  margin: 50px 50px 50px 50px;
+  border: 10px solid white;
+}
+
+.c6 {
+  color: #fff;
+  background-color: red;
+}
+
+div.c6 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  
+  padding-left: 100px;
+  padding-right: 100px;
+  border: 5px solid white;
+  margin: 50px 50px 50px 50px;
+}
+
+.c7 {
+  color: #fff;
+  background-color: green;
+}
+
+div.c7 {
+  border: 5px solid white;
+  margin: 50px 50px 50px 50px;
+}
+
+div.c2 {
+  background-color: orange;
+  text-align: left;
+  width: 360px;
+  margin-left:400px;
+  margin-right:0px;
+  right:0px;
+  padding: 80px 80px 80px 80px;
+}
+div.c5 {
+  background-color: green;
+  text-align: center;
+}
+br {
+  line-height: 30px;
+}
+hr {
+  width: 120%;
+  border-width: 1px;
+  border-style: solid;
+}

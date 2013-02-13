@@ -10,39 +10,29 @@
 		<script data-main="js/main" src="js/lib/require-jquery.js"></script>
 	</head>
 	<body>
-		<div class="container">
-			<div class="app row">
-				<div class="span6">
-					<h4>Output</h4>
-					<div class="well" id="txt"></div>
-				</div>
-				<div class="span5">
-					<h4>Signal</h4>
-					<div id="swfDecoder"></div>
-					<h4>Inputs</h4>
-					<div id="ui"></div>
-				</div>
-			</div>
-			<div class="app row">
-				<div class="span12">
 
-					<h4>Rendering</h4>
-					<div style='margin-bottom:8px'>
-						<div class='btn' id='updatetext'>
-							Update Text
-						</div>
-						<div class='btn' id='updatetag'>
-							Update Tag
-						</div>
-						<div class='btn pull-right' id='testtxt'>
-							Injection Test
-						</div>
-					</div>
-					<div class="well" id="render"></div>
-					<h4>Logging</h4>
-					<div class="well" id="log"></div>
-				</div>
-			</div>
+		<div class="span5">
+			<h4>Signal</h4>
+			<div id="swfDecoder"></div>
+			<h4>Inputs</h4>
+			<div id="ui"></div>
 		</div>
-	</body>
+		<div class="span6">
+			<h4>Output</h4>
+			<div class="well" id="txt"></div>
+		</div>
+
+		<h4>Rendering</h4>
+		<span>
+			<span class='btn' id='updatetext'>
+				Update Text
+			</span>
+			<span class='btn' id='updatetag'>
+				Update Tag
+			</span>
+			<span class='btn pull-right' id='testtxt'>
+				Injection Test
+			</span>
+		</span>
+		<div class="well" id="render"></div>
 </html>

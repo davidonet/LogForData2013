@@ -10,7 +10,8 @@ define(["dyn"], function(dyn) {
 			});
 			$('#updatetag').click(dyn.updateTag);
 			$('#updatetext').click(function() {
-				$('#render').html($('#txt')[0].innerHTML);
+				$('#render').html($('#txt').text());
+				$(document).scrollTop('65555')
 			});
 		}
 	}
