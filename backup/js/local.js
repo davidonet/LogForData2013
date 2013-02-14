@@ -1,1 +1,0 @@
-var proxy_url="/__ajaxproxy/";
