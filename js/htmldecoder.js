@@ -16,29 +16,39 @@ define(["dyn", "lib/dat.gui.min"], function(dyn, GUI) {
 			var gui = new dat.GUI();
 			gui.remember(aVE);
 			gui.add(aVE, 'original', 0, 100);
-			gui.add(aVE, 'blockinsert', 1, 100);	
+			gui.add(aVE, 'blockinsert', 1, 100);
 			gui.add(aVE, 'inline', 0, 100);
-			gui.add(aVE, 'asciimod', 0, 100);
-			gui.add(aVE, 'wordmod', 0, 100);
-			gui.add(aVE, 'wordrange', 1, 10);
+		//	gui.add(aVE, 'asciimod', 0, 100);
+		//	gui.add(aVE, 'wordmod', 0, 100);
+		//	gui.add(aVE, 'wordrange', 1, 10);
 			gui.add(aVE, 'clean');
-			
-			
+
+			function testVar(thresold) {
+				return ((100 * Math.random()) < thresold);
+			}
+
+
 			$('#render').on('receive', function(event, text) {
-				var changeChance = .8;
-				var changeBigChance = .5;
-				var alea = Math.random();
 				var elt;
-				if (alea < changeBigChance)
-					elt = document.createElement('div');
-				else
+				if (testVar(aVE.original)) {
 					elt = document.createElement('span');
-				alea = Math.random();
-				if (alea < changeChance) {
+					$(elt).addClass('plain');
+					console.log('Original');
+				} else {
+					if (testVar(aVE.inline)) {
+
+						elt = document.createElement('span');
+						console.log('Inline');
+					} else {
+						elt = document.createElement('div');
+						console.log('Block');
+					}
 					var c = Math.floor(Math.random() * 100) % 8;
 					$(elt).addClass('style' + c);
-				} else {
+				}
+				if (testVar(aVE.blockinsert)) {
 					$('#render').append("<hr/>");
+					console.log('Insert');
 				}
 				$(elt).html(text);
 				$('#render').append(elt);
