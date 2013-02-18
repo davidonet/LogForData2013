@@ -29,8 +29,8 @@ body {
     height: 201px;
 }
 #txt {
-    height: 96px;
-    overflow-y: scroll;
+    height: 2ex;
+    overflow-y: hidden;
     margin: 8px 8px 8px 8px;
     border: solid 1px #aaa;
 }
@@ -42,10 +42,11 @@ body {
 #render {
     padding-top: 16px;
     margin: 8px 8px 8px 8px;
-    border: solid 1px #aaa;
+    border: solid 3px #aaa;
     height: 512px;
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow-x: none;
+    width:800px;
 }
 #log {
     height: 480px;
@@ -74,14 +75,25 @@ b {
     color: #222;
     background-color: black;
     border-color: #4169E1;
+    font-size: 110%;
 }
 .style1 {
     color: #FF0000;
     background-color: black;
+    line-height: 8px;
 }
+div.style1{
+  width:100%;
+  background-color: white;
+  display:block;
+  padding:12px 0px 12px 0px;
+  text-align:center;  
+}
+
 .style2 {
     color: #FFFF00;
     border-color: #00FFFF;
+    font-size: 120%;
 }
 .style3 {
     color: #FFFFFF;
@@ -91,6 +103,7 @@ b {
     padding-right: 20px;
     margin-right: 360px;
     text-align: right;
+    
 }
 .style4 {
     color: #4169E1;
@@ -99,11 +112,13 @@ b {
     padding-left: 20px;
     margin-left: 360px;
     text-align: left;
+    font-size: 80%;
 }
 
 .style5 {
     color: #7CFC00;
     background-color: black;
+    font-size: 130%;
 }
 div.style5 {
     margin: 50px 50px 50px 50px;
@@ -113,6 +128,7 @@ div.style5 {
 .style6 {
     color: #fff;
     background-color: red;
+    font-size: 105%;
 }
 
 div.style6 {
@@ -137,7 +153,7 @@ div.style7 {
 div.style2 {
     background-color: orange;
     text-align: left;
-    width: 360px;
+    width: 200px;
     margin-left: 400px;
     margin-right: 0px;
     right: 0px;
@@ -146,6 +162,15 @@ div.style2 {
 div.style5 {
     background-color: green;
     text-align: center;
+}
+
+em{
+    background-color: white;
+    color: #f9f9f9;
+    font-style:normal;
+    vertical-align:middle;
+    font-size: 110%;
+    line-height:12px;
 }
 
 #render > hr {

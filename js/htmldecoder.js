@@ -38,11 +38,11 @@ define(["dyn", "lib/dat.gui.min", 'asciiart'], function(dyn, GUI, asciiart) {
 					var txt = text.split(' ');
 					var pos = Math.floor(Math.random() * txt.length);
 					var nbw = Math.floor(Math.random() * aVE.wordrange);
-					txt[pos] = "<b>" + txt[pos];
+					txt[pos] = "<em>" + txt[pos];
 					if (0 < nbw)
-						txt[pos + nbw] = txt[pos + nbw] + "</b>";
+						txt[pos + nbw] = txt[pos + nbw] + "</em>";
 					else
-						txt[pos] += "</b>";
+						txt[pos] += "</em>";
 					text = "";
 					$(txt).each(function(index, w) {
 						text += w;
@@ -63,7 +63,7 @@ define(["dyn", "lib/dat.gui.min", 'asciiart'], function(dyn, GUI, asciiart) {
 						elt = document.createElement('div');
 						$(elt).html(text);
 						if (testVar(aVE.asciimod)) {
-							$(elt).html(asciiart.block($(elt).text(), 10 * Math.floor(5 + Math.random() * 6)));
+							$(elt).html(asciiart.block($(elt).text(), 10 * Math.floor(2 + Math.random() * 6)));
 							$(elt).addClass('ascii');
 							$(elt).css({
 								"margin-left" : Math.floor(1 + 20 * Math.random()) + "%"
