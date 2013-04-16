@@ -1,3 +1,5 @@
+@import 'text.less';
+
 @font-face {
     font-family: 'Lucida Sans Typewriter';
     src: url('LucidaTypewriterRegular.ttf') format('truetype');
@@ -25,156 +27,66 @@ body {
     min-height: 400px;
 }
 #swfDecoder {
+ margin-top:2%;
     width: 321px;
     height: 201px;
 }
-#txt {
-    height: 2ex;
-    overflow-y: hidden;
-    margin: 8px 8px 8px 8px;
-    border: solid 1px #aaa;
-}
+
+
 
 #ui {
-    height: 32px;
-    overflow-y: scroll;
+  text-align:left;
+  margin-top:2%;
+  height:35%;
+  overflow-y: scroll;
+}
+#main{
+    width:100%;
+    height: 90%;
 }
 #render {
-    padding-top: 16px;
-    margin: 8px 8px 8px 8px;
-    border: solid 3px #aaa;
-    height: 512px;
-    overflow-y: hidden;
-    overflow-x: none;
-    width:800px;
+    top:1%;
+    left:1%;
+    border: solid 1px #aaa;
+    height: 94%;
+    overflow-y: none;
+    overflow-x: hidden;
+    width:60%;
+    position:absolute;
 }
+#txt {
+  position:absolute;
+  width:98%;
+  left:1%;
+  top:96%;
+  bottom:0;
+    height: 2%;
+    overflow-y: hidden;
+    border: solid 1px #aaa;
+  font-size:110%;
+  color:#222;
+  background-color:#aaa;
+}
+#audiohandling {
+  border: solid 1px #aaa;
+  position:absolute;
+  bottom: 5%;
+  left:62%;
+  width:37%;
+  height:40%;
+  text-align:center;
+}
+
+
+
 #log {
     height: 480px;
     margin: 8px 8px 8px 8px;
     border: solid 1px #111;
 }
 
-b {
-    font-size: 200%;
-    text-align: center;
-}
 
 .ascii{
      display: block;
 }
 
-#render > span.plain {
-    background: black;
-    color: white;
-    font-family: "Lucida Sans Typewriter", "Lucida Sans", sans-serif;
-    font-size: 10pt;
-    font-weight: normal;
-    text-decoration: none;
-}
-.style0 {
-    color: #222;
-    background-color: black;
-    border-color: #4169E1;
-    font-size: 110%;
-}
-.style1 {
-    color: #FF0000;
-    background-color: black;
-    line-height: 8px;
-}
-div.style1{
-  width:100%;
-  background-color: white;
-  display:block;
-  padding:12px 0px 12px 0px;
-  text-align:center;  
-}
-
-.style2 {
-    color: #FFFF00;
-    border-color: #00FFFF;
-    font-size: 120%;
-}
-.style3 {
-    color: #FFFFFF;
-    background-color: black;
-    border-color: #00FF00;
-    border-right: solid 2px white;
-    padding-right: 20px;
-    margin-right: 360px;
-    text-align: right;
-    
-}
-.style4 {
-    color: #4169E1;
-    background-color: black;
-    border-left: solid 2px white;
-    padding-left: 20px;
-    margin-left: 360px;
-    text-align: left;
-    font-size: 80%;
-}
-
-.style5 {
-    color: #7CFC00;
-    background-color: black;
-    font-size: 130%;
-}
-div.style5 {
-    margin: 50px 50px 50px 50px;
-    border: 10px solid white;
-}
-
-.style6 {
-    color: #fff;
-    background-color: red;
-    font-size: 105%;
-}
-
-div.style6 {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    padding-left: 100px;
-    padding-right: 100px;
-    border: 5px solid white;
-    margin: 50px 50px 50px 50px;
-}
-
-.style7 {
-    color: #fff;
-    background-color: green;
-}
-
-div.style7 {
-    border: 5px solid white;
-    margin: 50px 50px 50px 50px;
-}
-
-div.style2 {
-    background-color: orange;
-    text-align: left;
-    width: 200px;
-    margin-left: 400px;
-    margin-right: 0px;
-    right: 0px;
-    padding: 80px 80px 80px 80px;
-}
-div.style5 {
-    background-color: green;
-    text-align: center;
-}
-
-em{
-    background-color: white;
-    color: #f9f9f9;
-    font-style:normal;
-    vertical-align:middle;
-    font-size: 110%;
-    line-height:12px;
-}
-
-#render > hr {
-    width: 50%;
-    border-width: 1px;
-    border-style: dotted;
-}

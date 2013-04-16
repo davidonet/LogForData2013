@@ -25,8 +25,8 @@ define(["dyn", "lib/dat.gui.min", 'asciiart'], function(dyn, GUI, asciiart) {
 			gui.add(aVE, 'magicsecret', 0, 100);
 			gui.add(aVE, 'wordmod', 0, 100);
 			gui.add(aVE, 'wordrange', 1, 10).step(1);
-			gui.add(aVE, 'clean');
-
+			gui.add(aVE, 'clean');			
+			
 			function testVar(thresold) {
 				return ((100 * Math.random()) < thresold);
 			}

@@ -10,29 +10,15 @@
 		<script data-main="js/main" src="js/lib/require-jquery.js"></script>
 	</head>
 	<body>
-
-		<div class="span5">
-			<h4>Signal</h4>
-			<div id="swfDecoder"></div>
-			<h4>Inputs</h4>
-			<div id="ui"></div>
+		<div id='main'> 
+			<div id="render"></div>
+			<div id='audiohandling' >
+				<div id="swfDecoder"></div>
+				<div id="ui"></div>
+			</div>
 		</div>
-		<div class="span6">
-			<h4>Output</h4>
+		<div>
 			<div class="well" id="txt"></div>
 		</div>
 
-		<h4>Rendering</h4>
-		<span hidden>
-			<span class='btn' id='updatetext'>
-				Update Text
-			</span>
-			<span class='btn' id='updatetag'>
-				Update Tag
-			</span>
-			<span class='btn pull-right' id='testtxt'>
-				Injection Test
-			</span>
-		</span>
-		<div class="well" id="render"></div>
 </html>
