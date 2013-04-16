@@ -42,7 +42,7 @@
 						var aPhoto = data.photos.photo[Math.floor(Math.random() * 100)]
 						var elt = document.createElement('img');
 						elt.draggable = false;
-						var size = (Math.random() < .5 ? 't' : 'm');
+						var size =  (Math.random() < .5 ? 't' : 'm');
 						var url = Mustache.render("http://farm{{farm}}.staticflickr.com/{{server}}/{{id}}_{{secret}}_" + size + ".jpg", aPhoto);
 						$(elt).attr('src', url);
 						localElt.append(elt);

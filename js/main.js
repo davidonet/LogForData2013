@@ -7,14 +7,9 @@ requirejs.config({
 
 require(["jquery"], function($) {
 	$(function() {
-		require(["audiohandling", "htmldecoder"], function(audiohandling, htmldecoder) {
+		require(["audiohandling", "htmldecoder","localinfo"], function(audiohandling, htmldecoder,localinfo) {
 			htmldecoder.init();
-			$('#testtxt').click(function() {
-				$('#render').append("<span class='searchimg' name='ear'/>");
-				require(["dyn"], function(dyn) {
-					dyn.updateTag();
-				});
-			});
+			//localinfo.init();
 		});
 	});
 });
