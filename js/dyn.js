@@ -1,4 +1,4 @@
-define([], function() {
+ define(['mustache'], function(Mustache) {
 	function XHRProxified(url, mime) {
 
 		if (document.location.port == 8080) {
@@ -22,50 +22,35 @@ define([], function() {
 		return jQuery(this).length > 0;
 	}
 	function log(aText) {
-		
+
 		$('#log').append(aText + '<br/>');
-		
+
 	}
+
+	var classes = ["actualite", "cuisine", "diplo", "entrevue", "princesse", "potins"];
 
 	return {
 		updateTag : function() {
 			log("Updating Tag");
 
-			if ($('.city').exists()) {
-				//map_show();
-				$('.city').text(geoplugin_city());
-				log("Looking for " + geoplugin_city());
-			}
-
-			if ($('.time').exists()) {
-				var d = new Date();
-				$('.time').text(d.getHours() + ':' + d.getMinutes());
-				log("Checking time...");
-				log("it's..." + d);
-			}
-
-			if ($('.ip').exists()) {
-				log("Checking IP address...");
-				$.getJSON("/getip.php", function(data) {
-					$('.ip').text(data["REMOTE_ADDR"]);
-					log("IP found : " + data["ip"]);
-				});
-			}
-			var WPos = 0;
 			if ($('.searchimg').exists()) {
 				$('.searchimg').each(function(elt) {
 					var searchterm = $(this).attr('name');
+					var localElt = $(this);
 					log("Searching images for : " + searchterm);
-					$.getJSON(XHRProxified("http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + searchterm, "application/json"), function(data) {
-						var randNum = Math.floor(Math.random() * data["responseData"]["results"].length);
-						log("Found images and using the number : " + randNum);
-						var url = data["responseData"]["results"][randNum]["url"];
-						log("Opening an external window");
-						var myWindow = window.open(url, 'image' + WPos, 'width=320,height=240,toolbar=no,location=no,directories=no,status=no,menubar=no,top=' + ( WPos = WPos + 240));
-						//				setTimeout(function(e){myWindow.close();},3000);
+					$.getJSON("http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b27e622e07f348e026d868f2ee68830c&tags=" + searchterm + "&format=json&jsoncallback=?", function(data) {
+						var aPhoto = data.photos.photo[Math.floor(Math.random() * 100)]
+						var elt = document.createElement('img');
+						elt.draggable = false;
+						var size =  (Math.random() < .5 ? 't' : 'm');
+						var url = Mustache.render("http://farm{{farm}}.staticflickr.com/{{server}}/{{id}}_{{secret}}_" + size + ".jpg", aPhoto);
+						$(elt).attr('src', url);
+						localElt.append(elt);
+						localElt.removeClass('searchimg');
 					});
 				});
 			}
+
 			if ($('.temp').exists()) {
 				log("Getting weather data");
 				$.ajax({
@@ -143,11 +128,13 @@ define([], function() {
 				$(".princesse").text("...");
 				$.ajax({
 					type : "GET",
-					url : XHRProxified("http://www.pointdevue.fr/rss/rss2.0-breves.xml", "application/xml;charset=UTF-8"),
+					url : XHRProxified("http://www.voici.fr/feeds/view/actu", "application/xml;charset=UTF-8"),
 					dataType : "xml",
 					success : function(xml) {
-						var aTitle = $(xml).find("item").first().find("title").text();
+						var aArticles = $(xml).find("item");
+						var aTitle = $(aArticles[Math.floor(Math.random() * aArticles.length)]).find("title").text();
 						$(".princesse").text(aTitle);
+						$(".princesse").removeClass('princesse');
 						log("I've got a new princesse")
 					}
 				});
