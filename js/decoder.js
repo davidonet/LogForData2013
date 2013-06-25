@@ -30,7 +30,7 @@ Decoder.prototype = {
 		this.cnx.resolve("SwfDecoder").resolve("attachInput").call([id,name]);
 	}
 	,onInputs: function(inputs) {
-		console.log("here");
+		console.log("shouldn't be here");
 		console.log(inputs);
 	}
 	,getInputs: function() {
