@@ -6,7 +6,7 @@ define(['swfobject', 'decoder'], function() {
 
 	Decoder.start("swf/decoder.swf", function(d) {
 		d.onInputs = function(inputs) {
-			console.log(inputs.length);
+			//console.log(inputs.length);
 			ui.html("");
 			var table = $("<table class='table'></table>");
 			for ( i = 0; i < inputs.length; i++) {
