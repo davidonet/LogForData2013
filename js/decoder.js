@@ -11,8 +11,10 @@ Decoder.__name__ = ["Decoder"];
 Decoder.start = function(url,cb) {
 	if(url == null) url = "swf/decoder.swf";
 	swfobject.embedSWF(url,"swfDecoder","100%","100%","10.2",null,{ },{ allowScriptAccess : "always"},{ },function() {
-		Decoder.current = new Decoder();
-		if(cb != null) cb(Decoder.current);
+		js.Browser.window.setTimeout(function() {
+			Decoder.current = new Decoder();
+			if(cb != null) cb(Decoder.current);
+		},500);
 	});
 }
 Decoder.main = function() {
