@@ -22,7 +22,8 @@ define(['mustache'], function(Mustache) {
 		return jQuery(this).length > 0;
 	}
 	function log(aText) {
-		$('#info').append(aText + '<br/>');
+		var t = '@'+(new Date()).getTime(); 
+		$('#info').append(t + ' - ' + aText + '<br/>');
 		console.log(aText);
 		$('#info').scrollTop(65000);
 	}
@@ -162,7 +163,7 @@ define(['mustache'], function(Mustache) {
 			}
 
 			if ($(".logandrew").exists()) {
-				log("Getting some people");
+				log("Getting some fresh infos");
 				$(".logandrew").each(function(idx, elt) {
 					$.ajax({
 						type : "GET",
@@ -174,8 +175,8 @@ define(['mustache'], function(Mustache) {
 							var anItem = $(items[idx]);
 							var aText = anItem.find('description').text();
 							$(elt).removeClass('logandrew');
-							$(elt).html(aText.replace(/<img.*>/g,""));
-							log("I've got logandrew")
+							$(elt).html(aText.replace(/<img.*>/g, ""));
+							log("I've got logandrew infos")
 						}
 					});
 				});
@@ -196,7 +197,7 @@ define(['mustache'], function(Mustache) {
 			if ($(".generate").exists()) {
 				log("Generating randomness");
 				$('.generate').each(function(elt) {
-					var myList = $(this).attr('list');
+					var myList = $(this).attr('name');
 					var myArray = eval(myList);
 					var randNum = Math.floor(Math.random() * myArray.length);
 					log("Random number : " + randNum);
