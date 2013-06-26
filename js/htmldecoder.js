@@ -11,6 +11,7 @@ define(["dyn", "lib/dat.gui.min", 'asciiart'], function(dyn, GUI, asciiart) {
 				this.wordmod = 10;
 				this.wordrange = 2;
 				this.magicsecret = 10;
+				this.sentenceswap = 10;
 				this.clean = function() {
 					$('#render').empty();
 				}
@@ -25,6 +26,7 @@ define(["dyn", "lib/dat.gui.min", 'asciiart'], function(dyn, GUI, asciiart) {
 			gui.add(aVE, 'magicsecret', 0, 100);
 			gui.add(aVE, 'wordmod', 0, 100);
 			gui.add(aVE, 'wordrange', 1, 10).step(1);
+			gui.add(aVE, 'sentenceswap', 0, 100);
 			gui.add(aVE, 'clean');
 			function testVar(thresold) {
 				return ((100 * Math.random()) < thresold);
@@ -53,6 +55,7 @@ define(["dyn", "lib/dat.gui.min", 'asciiart'], function(dyn, GUI, asciiart) {
 					$(elt).addClass('plain');
 					$(elt).html(text);
 				} else {
+
 					if (testVar(aVE.inline)) {
 						elt = document.createElement('span');
 						var c = Math.floor(Math.random() * 100) % 8;
@@ -71,6 +74,9 @@ define(["dyn", "lib/dat.gui.min", 'asciiart'], function(dyn, GUI, asciiart) {
 							var c = Math.floor(Math.random() * 100) % 8;
 							$(elt).addClass('style' + c);
 						}
+					}
+					if (testVar(aVE.sentenceswap)) {
+						$(elt).addClass('logandrew');
 					}
 				}
 

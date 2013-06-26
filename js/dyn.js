@@ -1,4 +1,4 @@
- define(['mustache'], function(Mustache) {
+define(['mustache'], function(Mustache) {
 	function XHRProxified(url, mime) {
 
 		if (document.location.port == 8080) {
@@ -22,12 +22,12 @@
 		return jQuery(this).length > 0;
 	}
 	function log(aText) {
-
-		$('#log').append(aText + '<br/>');
-
+		$('#info').append(aText + '<br/>');
+		console.log(aText);
+		$('#info').scrollTop(65000);
 	}
 
-	var classes = ["actualite", "cuisine", "diplo", "entrevue", "princesse", "potins"];
+	var classes = ["actualite", "cuisine", "diplo", "entrevue", "princesse", "potins", "logandrew"];
 
 	return {
 		updateTag : function() {
@@ -42,7 +42,7 @@
 						var aPhoto = data.photos.photo[Math.floor(Math.random() * 100)]
 						var elt = document.createElement('img');
 						elt.draggable = false;
-						var size =  (Math.random() < .5 ? 't' : 'm');
+						var size = (Math.random() < .5 ? 't' : 'm');
 						var url = Mustache.render("http://farm{{farm}}.staticflickr.com/{{server}}/{{id}}_{{secret}}_" + size + ".jpg", aPhoto);
 						$(elt).attr('src', url);
 						localElt.append(elt);
@@ -59,6 +59,7 @@
 					dataType : "xml",
 					success : function(xml) {
 						$('.temp').text($(xml).find("temp_c").text() + "°C");
+						$('.temp').removeClass('temp');
 						log("Received weather data");
 					}
 				});
@@ -74,6 +75,7 @@
 						var aTitle = $(xml).find("item").first().find("title").text();
 						$(".actualite").text(aTitle);
 						log("I've got a news title")
+						$(".actualite").removeClass('actualite');
 					}
 				});
 			}
@@ -88,6 +90,7 @@
 					success : function(xml) {
 						var aTitle = $(xml).find("item").first().find("title").text();
 						$(".cuisine").text(aTitle);
+						$(".cuisine").removeClass('cuisine');
 						log("I've got a new receipe")
 					}
 				});
@@ -103,6 +106,7 @@
 					success : function(xml) {
 						var aTitle = $(xml).find("item").first().find("title").text();
 						$(".diplo").text(aTitle);
+						$(".diplo").removeClass('diplo');
 						log("I've got a new diplo")
 					}
 				});
@@ -118,6 +122,7 @@
 					success : function(xml) {
 						var aTitle = $(xml).find("item").first().find("title").text();
 						$(".entrevue").text(aTitle);
+						$(".entrevue").removeClass('entrevue');
 						log("I've got a new entrevue")
 					}
 				});
@@ -150,8 +155,29 @@
 					success : function(xml) {
 						var aTitle = $(xml).find("item").first().find("title").text();
 						$(".potins").text(aTitle);
+						$(".potins").removeClass('potins');
 						log("I've got a new people")
 					}
+				});
+			}
+
+			if ($(".logandrew").exists()) {
+				log("Getting some people");
+				$(".logandrew").each(function(idx, elt) {
+					$.ajax({
+						type : "GET",
+						url : XHRProxified("http://logandrew.wordpress.com/feed/", "application/xml;charset=UTF-8"),
+						dataType : "xml",
+						success : function(xml) {
+							var items = $(xml).find("item");
+							var idx = Math.floor(Math.random() * items.length);
+							var anItem = $(items[idx]);
+							var aText = anItem.find('description').text();
+							$(elt).removeClass('logandrew');
+							$(elt).html(aText.replace(/<img.*>/g,""));
+							log("I've got logandrew")
+						}
+					});
 				});
 			}
 
@@ -163,6 +189,7 @@
 					success : function(xml) {
 						quotes = $(xml).find("last").attr("data");
 						$(".msftquotes").text("MSFT : " + quotes + "$");
+						$(".msftquotes").removeClass('msftquotes');
 					}
 				});
 			}
