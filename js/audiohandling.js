@@ -41,14 +41,15 @@ define(['swfobject', 'decoder'], function() {
 				data = data.slice(sp + 1);
 				$('#render').trigger('receive', txt);
 			}
-			$('#txt').text(data);
+			$('#txt').text(data.slice(-160));		
 		};
+
 
 		/* 
 		// réglage du volume d'entrée :
 		d.setInputVolume( 0.5 );
 		// réglage du volume de sortie :
-		d.setOutputVolume( 0.5 );
+		
 		// par défaut le volume de sortie est à 0 
 		// (pour éviter le larsen et conserver le même comportement que la version précédente)
 		*/
