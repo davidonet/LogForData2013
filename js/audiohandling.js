@@ -6,6 +6,7 @@ define(['swfobject', 'decoder'], function() {
 
 	Decoder.start("swf/decoder.swf", function(d) {
 		d.onInputs = function(inputs) {
+			//console.log(inputs.length);
 			ui.html("");
 			var table = $("<table class='table'></table>");
 			for ( i = 0; i < inputs.length; i++) {
@@ -41,17 +42,19 @@ define(['swfobject', 'decoder'], function() {
 				data = data.slice(sp + 1);
 				$('#render').trigger('receive', txt);
 			}
-			$('#txt').text(data.slice(-160));		
+			$('#txt').text(data.slice(-160));
 		};
 
+		d.getInputs();
+		d.setOutputVolume(0.1);
 
-		/* 
-		// réglage du volume d'entrée :
-		d.setInputVolume( 0.5 );
-		// réglage du volume de sortie :
-		
-		// par défaut le volume de sortie est à 0 
-		// (pour éviter le larsen et conserver le même comportement que la version précédente)
-		*/
+		/*
+		 // réglage du volume d'entrée :
+		 d.setInputVolume( 0.5 );
+		 // réglage du volume de sortie :
+
+		 // par défaut le volume de sortie est à 0
+		 // (pour éviter le larsen et conserver le même comportement que la version précédente)
+		 */
 	});
 });
