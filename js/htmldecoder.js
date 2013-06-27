@@ -16,18 +16,19 @@ define(["dyn", "lib/dat.gui.min", 'asciiart'], function(dyn, GUI, asciiart) {
 					$('#render').empty();
 				}
 			}
-			var aVE = new VisualEngine();
+			aVE = new VisualEngine();
 			var gui = new dat.GUI();
 			gui.remember(aVE);
-			gui.add(aVE, 'original', 0, 100);
-			gui.add(aVE, 'blockinsert', 1, 100);
-			gui.add(aVE, 'inline', 0, 100);
-			gui.add(aVE, 'asciimod', 0, 100);
-			gui.add(aVE, 'magicsecret', 0, 100);
-			gui.add(aVE, 'wordmod', 0, 100);
-			gui.add(aVE, 'wordrange', 1, 10).step(1);
-			gui.add(aVE, 'sentenceswap', 0, 100);
+			gui.add(aVE, 'original', 0, 100).listen();;
+			gui.add(aVE, 'blockinsert', 1, 100).listen();;
+			gui.add(aVE, 'inline', 0, 100).listen();;
+			gui.add(aVE, 'asciimod', 0, 100).listen();;
+			gui.add(aVE, 'magicsecret', 0, 100).listen();;
+			gui.add(aVE, 'wordmod', 0, 100).listen();;
+			gui.add(aVE, 'wordrange', 1, 10).step(1).listen();;
+			gui.add(aVE, 'sentenceswap', 0, 100).listen();;
 			gui.add(aVE, 'clean');
+
 			function testVar(thresold) {
 				return ((100 * Math.random()) < thresold);
 			}
@@ -93,7 +94,9 @@ define(["dyn", "lib/dat.gui.min", 'asciiart'], function(dyn, GUI, asciiart) {
 					$(elt).fadeOut(10000);
 				dyn.updateTag();
 				$('#render').scrollTop(65000);
-			})
+
+			});
+			return aVE;
 		}
 	}
 });

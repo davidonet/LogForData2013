@@ -6,12 +6,12 @@ requirejs.config({
 	}
 });
 var source = [];
-
+var aVE;
 require(["jquery"], function($) {
 
 	$(function() {
 		require(["audiohandling", "htmldecoder", "localinfo", "soundplayer"], function(audiohandling, htmldecoder, localinfo) {
-			htmldecoder.init();
+			aVE = htmldecoder.init();
 			//localinfo.init();
 		});
 	});

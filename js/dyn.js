@@ -22,7 +22,7 @@ define(['mustache'], function(Mustache) {
 		return jQuery(this).length > 0;
 	}
 	function log(aText) {
-		var t = '@'+(new Date()).getTime(); 
+		var t = '@' + (new Date()).getTime();
 		$('#info').append(t + ' - ' + aText + '<br/>');
 		console.log(aText);
 		$('#info').scrollTop(65000);
@@ -159,6 +159,17 @@ define(['mustache'], function(Mustache) {
 						$(".potins").removeClass('potins');
 						log("I've got a new people")
 					}
+				});
+			}
+
+			if ($(".param").exists()) {
+				log("Seting up a new param");
+				$(".param").each(function(idx, elt) {
+					var name = $(elt).attr('name');
+					var value = $(elt).attr('value');
+					log(name + ' set to ' + value);
+					aVE[name] = value;
+					$(elt).removeClass('param');
 				});
 			}
 
