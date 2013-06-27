@@ -17,18 +17,16 @@ define(['bufferloader'], function(bufferloader) {
 		for (var i = 0; i < 8; i++) {
 			source[i] = context.createBufferSource();
 			source[i].buffer = bufferList[i];
+			source[i].connect(context.destination);
 
 		}
 		/*
 		source[7].playbackRate.value = .1;
 		source[7].loop = true;
 		source[7].start(0);
-		source[7].connect(context.destination);
-		speak("test", {
-			pitch : 20,
-			speed : 150
-		});
 		*/
+		
 	}
 
 });
+ 

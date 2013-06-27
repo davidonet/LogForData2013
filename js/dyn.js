@@ -215,6 +215,36 @@ define(['mustache'], function(Mustache) {
 					$(this).text(myArray[randNum]);
 				});
 			}
+
+			if ($(".sound").exists()) {
+				log('sound instruction');
+				$(".sound").each(function(idx, elt) {
+					var nb = $(elt).attr('nb');
+					var action = $(elt).attr('action');
+					var value = $(elt).attr('value');
+					var loop = $(elt).attr('loop');
+					log(action + ' #' + nb + ' with ' + value);
+					if (action == "start") {
+						if (value)
+							value = 0;
+						source[nb].start(value);
+						if (loop)
+							source[nb].loop = true;
+					}
+					if (action == "stop") {
+						if (value == undefined)
+							value = 0;
+						source[nb].stop(value);
+					}
+					if (action == "speed") {
+						if (value == undefined)
+							value = 0;
+						source[nb].playbackRate.value = .1;
+					}
+					$(elt).removeClass('sound');
+				});
+			}
+
 		}
 	}
 });
