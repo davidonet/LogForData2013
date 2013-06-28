@@ -39,14 +39,19 @@ define(['mustache'], function(Mustache) {
 					var searchterm = $(this).attr('name');
 					var localElt = $(this);
 					log("Searching images for : " + searchterm);
-					$.getJSON("http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b27e622e07f348e026d868f2ee68830c&tags=" + searchterm + "&format=json&jsoncallback=?", function(data) {
+					$.getJSON("http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b27e622e07f348e026d868f2ee68830c&text=" + searchterm + "&format=json&jsoncallback=?", function(data) {
 						var aPhoto = data.photos.photo[Math.floor(Math.random() * 100)]
 						var elt = document.createElement('img');
 						elt.draggable = false;
 						var size = (Math.random() < .5 ? 't' : 'm');
-						var url = Mustache.render("http://farm{{farm}}.staticflickr.com/{{server}}/{{id}}_{{secret}}_" + size + ".jpg", aPhoto);
-						$(elt).attr('src', url);
-						localElt.append(elt);
+						try {
+							var url = Mustache.render("http://farm{{farm}}.staticflickr.com/{{server}}/{{id}}_{{secret}}_" + size + ".jpg", aPhoto);
+							$(elt).attr('src', url);
+							localElt.append(elt);
+						} catch(err) {
+							log('error getting image');
+							console.log(aPhoto);
+						}
 						localElt.removeClass('searchimg');
 					});
 				});
@@ -66,99 +71,23 @@ define(['mustache'], function(Mustache) {
 				});
 			}
 
-			if ($(".actualite").exists()) {
-				log("Getting some headnews");
-				$.ajax({
-					type : "GET",
-					url : XHRProxified("http://rss.feedsportal.com/c/32788/f/524037/index.rss", 'application/xml;charset=UTF-8'),
-					dataType : "xml",
-					success : function(xml) {
-						var aTitle = $(xml).find("item").first().find("title").text();
-						$(".actualite").text(aTitle);
-						log("I've got a news title")
-						$(".actualite").removeClass('actualite');
-					}
-				});
-			}
-
-			if ($(".cuisine").exists()) {
-				log("Getting some receipes");
-				$(".cuisine").text("...");
-				$.ajax({
-					type : "GET",
-					url : XHRProxified("http://www.audreycuisine.fr/feed/", "application/xml;charset=UTF-8"),
-					dataType : "xml",
-					success : function(xml) {
-						var aTitle = $(xml).find("item").first().find("title").text();
-						$(".cuisine").text(aTitle);
-						$(".cuisine").removeClass('cuisine');
-						log("I've got a new receipe")
-					}
-				});
-			}
-
-			if ($(".diplo").exists()) {
-				log("Getting some diplo");
-				$(".diplo").text("...");
-				$.ajax({
-					type : "GET",
-					url : XHRProxified("http://www.monde-diplomatique.fr/rss/", "application/xml;charset=UTF-8"),
-					dataType : "xml",
-					success : function(xml) {
-						var aTitle = $(xml).find("item").first().find("title").text();
-						$(".diplo").text(aTitle);
-						$(".diplo").removeClass('diplo');
-						log("I've got a new diplo")
-					}
-				});
-			}
-
-			if ($(".entrevue").exists()) {
-				log("Getting some entrevue");
-				$(".entrevue").text("...");
-				$.ajax({
-					type : "GET",
-					url : XHRProxified("http://www.entrevue.fr/flux-rss/general", "application/xml;charset=UTF-8"),
-					dataType : "xml",
-					success : function(xml) {
-						var aTitle = $(xml).find("item").first().find("title").text();
-						$(".entrevue").text(aTitle);
-						$(".entrevue").removeClass('entrevue');
-						log("I've got a new entrevue")
-					}
-				});
-			}
-
-			if ($(".princesse").exists()) {
-				log("Getting some princesse");
-				$(".princesse").text("...");
-				$.ajax({
-					type : "GET",
-					url : XHRProxified("http://www.voici.fr/feeds/view/actu", "application/xml;charset=UTF-8"),
-					dataType : "xml",
-					success : function(xml) {
-						var aArticles = $(xml).find("item");
-						var aTitle = $(aArticles[Math.floor(Math.random() * aArticles.length)]).find("title").text();
-						$(".princesse").text(aTitle);
-						$(".princesse").removeClass('princesse');
-						log("I've got a new princesse")
-					}
-				});
-			}
-
-			if ($(".potins").exists()) {
-				log("Getting some people");
-				$(".potins").text("...");
-				$.ajax({
-					type : "GET",
-					url : XHRProxified("http://rss.feedsportal.com/c/32455/f/491700/index.rss", "application/xml;charset=UTF-8"),
-					dataType : "xml",
-					success : function(xml) {
-						var aTitle = $(xml).find("item").first().find("title").text();
-						$(".potins").text(aTitle);
-						$(".potins").removeClass('potins');
-						log("I've got a new people")
-					}
+			if ($(".yahoo").exists()) {
+				log("Getting some yahoo news");
+				$(".yahoo").text("...");
+				$(".yahoo").each(function(idx, elt) {
+					var aName = $(elt).attr('name');
+					$.ajax({
+						type : "GET",
+						url : XHRProxified("http://fr.news.yahoo.com/rss/" + aName, "application/xml;charset=UTF-8"),
+						dataType : "xml",
+						success : function(xml) {
+							var aArticles = $(xml).find("item");
+							var aTitle = $(aArticles[Math.floor(Math.random() * aArticles.length)]).find("title").text();
+							$(elt).text(aTitle);
+							$(elt).removeClass('yahoo');
+							log("I've got a yahoo #" + aName + ' : ' + aTitle);
+						}
+					});
 				});
 			}
 
@@ -174,7 +103,7 @@ define(['mustache'], function(Mustache) {
 			}
 
 			if ($(".logandrew").exists()) {
-				log("Getting some fresh infos");
+				log("Getting some logandrew's ");
 				$(".logandrew").each(function(idx, elt) {
 					$.ajax({
 						type : "GET",
@@ -185,26 +114,26 @@ define(['mustache'], function(Mustache) {
 							var idx = Math.floor(Math.random() * items.length);
 							var anItem = $(items[idx]);
 							var aText = anItem.find('description').text();
+							var aTitle = anItem.find('title').text();
 							$(elt).removeClass('logandrew');
 							$(elt).html(aText.replace(/<img.*>/g, ""));
-							log("I've got logandrew infos")
+							log("I've got logandrew infos : " + aTitle)
 						}
 					});
 				});
 			}
 
-			if ($(".msftquotes").exists()) {
-				$.ajax({
-					type : "GET",
-					url : XHRProxified("http://www.google.com/ig/api?stock=MSFT", "application/xml;charset=UTF-8"),
-					dataType : "xml",
-					success : function(xml) {
-						quotes = $(xml).find("last").attr("data");
-						$(".msftquotes").text("MSFT : " + quotes + "$");
-						$(".msftquotes").removeClass('msftquotes');
-					}
+			if ($(".param").exists()) {
+				log("Seting up a new param");
+				$(".param").each(function(idx, elt) {
+					var name = $(elt).attr('name');
+					var value = $(elt).attr('value');
+					log(name + ' set to ' + value);
+					aVE[name] = value;
+					$(elt).removeClass('param');
 				});
 			}
+
 			if ($(".generate").exists()) {
 				log("Generating randomness");
 				$('.generate').each(function(elt) {
@@ -223,28 +152,35 @@ define(['mustache'], function(Mustache) {
 					var action = $(elt).attr('action');
 					var value = $(elt).attr('value');
 					var loop = $(elt).attr('loop');
-					log(action + ' #' + nb + ' with ' + value);
+					if (!value)
+						value = Math.random()*5;
 					if (action == "start") {
-						if (value)
-							value = 0;
 						source[nb].start(value);
+						source[nb].playbackRate.value = 0.1 + Math.random();
 						if (loop)
 							source[nb].loop = true;
 					}
 					if (action == "stop") {
-						if (value == undefined)
-							value = 0;
 						source[nb].stop(value);
 					}
-					if (action == "speed") {
-						if (value == undefined)
-							value = 0;
-						source[nb].playbackRate.value = .1;
-					}
+
+					log(action + ' #' + nb + ' with ' + value + ' speed x' + source[nb].playbackRate.value);
 					$(elt).removeClass('sound');
 				});
 			}
 
+			if ($(".monitor").exists()) {
+				log('monitor instruction');
+				$(".monitor").each(function(idx, elt) {
+					var value = $(elt).attr('value');
+					$.event.trigger({
+						type : 'monitor',
+						message : value
+					});
+					log('input monitoring gain set : ' + value);
+					$(elt).removeClass('monitor');
+				});
+			}
 		}
 	}
 });

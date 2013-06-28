@@ -19,14 +19,14 @@ define(["dyn", "lib/dat.gui.min", 'asciiart'], function(dyn, GUI, asciiart) {
 			aVE = new VisualEngine();
 			var gui = new dat.GUI();
 			gui.remember(aVE);
-			gui.add(aVE, 'original', 0, 100).listen();;
-			gui.add(aVE, 'blockinsert', 1, 100).listen();;
-			gui.add(aVE, 'inline', 0, 100).listen();;
-			gui.add(aVE, 'asciimod', 0, 100).listen();;
-			gui.add(aVE, 'magicsecret', 0, 100).listen();;
-			gui.add(aVE, 'wordmod', 0, 100).listen();;
-			gui.add(aVE, 'wordrange', 1, 10).step(1).listen();;
-			gui.add(aVE, 'sentenceswap', 0, 100).listen();;
+			gui.add(aVE, 'original', 0, 100).listen();
+			gui.add(aVE, 'blockinsert', 1, 100).listen();
+			gui.add(aVE, 'inline', 0, 100).listen();
+			gui.add(aVE, 'asciimod', 0, 100).listen();
+			gui.add(aVE, 'magicsecret', 0, 100).listen();
+			gui.add(aVE, 'wordmod', 0, 100).listen();
+			gui.add(aVE, 'wordrange', 1, 10).step(1).listen();
+			gui.add(aVE, 'sentenceswap', 0, 100).listen();
 			gui.add(aVE, 'clean');
 
 			function testVar(thresold) {
@@ -35,9 +35,10 @@ define(["dyn", "lib/dat.gui.min", 'asciiart'], function(dyn, GUI, asciiart) {
 
 
 			$('#render').on('receive', function(event, text) {
+
 				var elt;
+				var txt = text.split(' ');
 				if (testVar(aVE.wordmod)) {
-					var txt = text.split(' ');
 					var pos = Math.floor(Math.random() * txt.length);
 					var nbw = Math.floor(Math.random() * aVE.wordrange);
 					txt[pos] = "<em>" + txt[pos];

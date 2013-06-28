@@ -46,11 +46,16 @@ define(['swfobject', 'decoder'], function() {
 		};
 
 		d.getInputs();
-		d.setOutputVolume(0.1);
-
+		d.setOutputVolume(0);
+		d.setInputVolume(.8);
+		
+		$(document).on("monitor", function(e){
+			d.setOutputVolume(e.message);
+		});
+		
 		/*
 		 // réglage du volume d'entrée :
-		 d.setInputVolume( 0.5 );
+
 		 // réglage du volume de sortie :
 
 		 // par défaut le volume de sortie est à 0

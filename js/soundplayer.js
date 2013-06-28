@@ -20,13 +20,6 @@ define(['bufferloader'], function(bufferloader) {
 			source[i].connect(context.destination);
 
 		}
-		/*
-		source[7].playbackRate.value = .1;
-		source[7].loop = true;
-		source[7].start(0);
-		*/
-		
 	}
-
 });
  
